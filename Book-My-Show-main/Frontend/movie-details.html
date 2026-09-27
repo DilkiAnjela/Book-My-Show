@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-4 bg-black/90">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <div class="space-x-6">
+    <a href="home.html" class="hover:text-red-400">Home</a>
+    <a href="movies.html" class="hover:text-red-400">Movies</a>
+    <a href="login.html" class="bg-red-500 px-4 py-2 rounded">Login</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="relative h-[60vh] bg-cover bg-center"
+     style="background-image:url('https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg')">
+  <div class="absolute inset-0 bg-black/80"></div>
+  <div class="relative h-full flex items-end p-10">
+    <div>
+      <h1 class="text-4xl font-bold">Interstellar</h1>
+      <p class="text-gray-300 mt-2">Sci-Fi • 2h 49m • ⭐ 8.6</p>
+      <a id="book-now-link" href="login.html?returnTo=shows.html"
+         class="inline-block mt-4 bg-red-500 px-6 py-2 rounded hover:bg-red-600">
+        Book Now
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- DETAILS -->
+<section class="p-10 max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">About Movie</h2>
+  <p class="text-gray-300 leading-relaxed">
+    A team of explorers travel through a wormhole in space in an attempt
+    to ensure humanity’s survival.
+  </p>
+
+  <div class="grid grid-cols-2 gap-6 mt-8">
+    <div class="bg-gray-800 p-4 rounded">
+      <p><span class="text-gray-400">Language:</span> English</p>
+      <p><span class="text-gray-400">Release:</span> 2014</p>
+    </div>
+    <div class="bg-gray-800 p-4 rounded">
+      <p><span class="text-gray-400">Genre:</span> Sci-Fi</p>
+      <p><span class="text-gray-400">Duration:</span> 2h 49m</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const bookNowLink = document.getElementById('book-now-link');
+  if (localStorage.getItem('bookMyShowToken')) {
+    bookNowLink.href = 'shows.html';
+  }
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

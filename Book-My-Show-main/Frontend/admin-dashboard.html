@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex">
+
+<!-- SIDEBAR -->
+<aside class="w-64 bg-black min-h-screen p-6">
+  <h1 class="text-2xl font-bold text-red-500 mb-8">🎬 Admin Panel</h1>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block text-red-400">Dashboard</a>
+    <a href="movie-management.html" class="block hover:text-red-400">Movies</a>
+    <a href="theater-screen-management.html" class="block hover:text-red-400">Theaters & Screens</a>
+    <a href="show-management.html" class="block hover:text-red-400">Shows</a>
+    <a href="seat-management.html" class="block hover:text-red-400">Seats</a>
+    <a href="login.html" class="block text-gray-400 mt-8">Logout</a>
+  </nav>
+</aside>
+
+<!-- CONTENT -->
+<main class="flex-1 p-10">
+  <h2 class="text-3xl font-bold mb-8">Dashboard</h2>
+
+  <div class="grid md:grid-cols-4 gap-6">
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Movies</p>
+      <p class="text-3xl font-bold">24</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Bookings</p>
+      <p class="text-3xl font-bold">1,230</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Revenue</p>
+      <p class="text-3xl font-bold text-green-400">$12,540</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Active Shows</p>
+      <p class="text-3xl font-bold">18</p>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

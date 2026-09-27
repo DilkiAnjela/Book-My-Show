@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Summary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<nav class="px-10 py-4 bg-black/90 flex justify-between">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <a href="seats.html" class="hover:text-red-400">← Back</a>
+</nav>
+
+<section class="p-10 max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+
+  <div class="md:col-span-2 bg-gray-800 p-6 rounded">
+    <h3 class="text-xl font-semibold mb-4">Booking Details</h3>
+    <p><b>Movie:</b> Interstellar</p>
+    <p><b>Date:</b> 05 Feb 2026</p>
+    <p><b>Time:</b> 7:30 PM</p>
+    <p><b>Seats:</b> A4, A5</p>
+  </div>
+
+  <div class="bg-gray-800 p-6 rounded">
+    <h3 class="text-xl font-semibold mb-4">Payment Summary</h3>
+    <p class="flex justify-between"><span>Tickets</span><span>$20</span></p>
+    <p class="flex justify-between"><span>Service Fee</span><span>$2</span></p>
+    <hr class="my-3 border-gray-700">
+    <p class="flex justify-between font-bold text-green-400">
+      <span>Total</span><span>$22</span>
+    </p>
+
+    <a href="payment.html"
+      class="block mt-6 bg-red-500 py-2 rounded text-center hover:bg-red-600">
+      Proceed to Payment
+    </a>
+  </div>
+
+</section>
+
+<script src="auth.js"></script>
+</body>
+</html>

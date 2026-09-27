@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookings | Book My Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-4 bg-black/90">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <div class="space-x-6">
+    <a href="user-dashboard.html" class="hover:text-red-400">Dashboard</a>
+    <a href="movies.html" class="hover:text-red-400">Movies</a>
+    <a href="login.html" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+      Logout
+    </a>
+  </div>
+</nav>
+
+<!-- BOOKINGS -->
+<section class="p-10 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold mb-6">My Bookings</h2>
+
+  <div class="space-y-4">
+
+    <!-- CONFIRMED -->
+    <div class="bg-gray-800 p-5 rounded flex justify-between items-center">
+      <div>
+        <p class="text-lg font-semibold">Interstellar</p>
+        <p class="text-gray-400 text-sm">
+          05 Feb 2026 • 7:30 PM • Seats A4, A5
+        </p>
+      </div>
+      <span class="bg-green-500/20 text-green-400 px-4 py-1 rounded">
+        CONFIRMED
+      </span>
+    </div>
+
+    <!-- CANCELLED -->
+    <div class="bg-gray-800 p-5 rounded flex justify-between items-center">
+      <div>
+        <p class="text-lg font-semibold">Inception</p>
+        <p class="text-gray-400 text-sm">
+          01 Feb 2026 • 9:00 PM • Seats B1, B2
+        </p>
+      </div>
+      <span class="bg-red-500/20 text-red-400 px-4 py-1 rounded">
+        CANCELLED
+      </span>
+    </div>
+
+  </div>
+</section>
+
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white flex">
+
+<!-- SIDEBAR -->
+<aside class="w-64 bg-black min-h-screen p-6">
+  <h1 class="text-2xl font-bold text-red-500 mb-8">🎬 Admin Panel</h1>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="hover:text-red-400">Dashboard</a>
+    <a href="movie-management.html" class="hover:text-red-400">Movies</a>
+    <a href="theater-screen-management.html" class="hover:text-red-400">Theaters & Screens</a>
+    <a href="show-management.html" class="text-red-400">Shows</a>
+    <a href="seat-management.html" class="hover:text-red-400">Seats</a>
+  </nav>
+</aside>
+
+<!-- CONTENT -->
+<main class="flex-1 p-10">
+  <h2 class="text-3xl font-bold mb-6">Show Management</h2>
+
+  <!-- SCHEDULE SHOW BUTTON -->
+  <button onclick="openShowModal()"
+          class="mb-4 bg-green-500 px-4 py-2 rounded hover:bg-green-600">
+    + Schedule Show
+  </button>
+
+  <!-- SHOW TABLE -->
+  <table class="w-full bg-gray-800 rounded overflow-hidden">
+    <thead class="bg-gray-700">
+      <tr>
+        <th class="p-3 text-left">Movie</th>
+        <th>Screen</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="border-t border-gray-700">
+        <td class="p-3">Interstellar</td>
+        <td>Screen 1</td>
+        <td>05 Feb 2026</td>
+        <td>7:30 PM</td>
+        <td>$10</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<!-- SCHEDULE SHOW MODAL -->
+<div id="showModal"
+     class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center">
+
+  <div class="bg-gray-800 p-6 rounded w-[420px]">
+    <h3 class="text-xl font-bold mb-4">Schedule New Show</h3>
+
+    <form class="space-y-4">
+
+      <select class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+        <option>Select Movie</option>
+        <option>Interstellar</option>
+        <option>Inception</option>
+      </select>
+
+      <select class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+        <option>Select Theater</option>
+        <option>Galaxy Cinema</option>
+      </select>
+
+      <select class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+        <option>Select Screen</option>
+        <option>Screen 1</option>
+        <option>Screen 2</option>
+      </select>
+
+      <input type="date"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <input type="time"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <input type="number" placeholder="Ticket Price"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <div class="flex justify-end gap-3 mt-4">
+        <button type="button" onclick="closeShowModal()"
+                class="px-4 py-2 bg-gray-600 rounded">
+          Cancel
+        </button>
+        <button type="button"
+                class="px-4 py-2 bg-green-500 rounded hover:bg-green-600">
+          Save Show
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function openShowModal() {
+    document.getElementById("showModal").classList.remove("hidden");
+  }
+
+  function closeShowModal() {
+    document.getElementById("showModal").classList.add("hidden");
+  }
+</script>
+
+</body>
+</html>

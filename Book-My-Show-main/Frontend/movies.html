@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book My Show | Movies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-4 bg-black/90">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <div class="space-x-6">
+    <a href="home.html" class="hover:text-red-400">Home</a>
+    <a href="movies.html" class="text-red-400">Movies</a>
+    <a href="login.html" class="bg-red-500 px-4 py-2 rounded">Login</a>
+  </div>
+</nav>
+
+<!-- MOVIE GRID -->
+<section class="px-10 py-12">
+  <h2 class="text-3xl font-bold mb-6">All Movies</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+    <div class="bg-gray-800 rounded-xl overflow-hidden hover:scale-105 transition">
+      <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg"
+           class="h-72 w-full object-cover">
+      <div class="p-4">
+        <h4 class="text-xl font-semibold">Interstellar</h4>
+        <p class="text-gray-400 text-sm">Sci-Fi • English</p>
+        <a href="movie-details.html"
+           class="block text-center mt-4 bg-red-500 py-2 rounded hover:bg-red-600">
+          View Details
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="auth.js"></script>
+</body>
+</html>

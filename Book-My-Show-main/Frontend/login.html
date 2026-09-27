@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Book My Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-black to-gray-900 h-screen flex items-center justify-center">
+
+<div class="bg-gray-800 p-8 rounded-xl w-96 text-white shadow-xl">
+
+  <h2 class="text-3xl font-bold text-center mb-6">
+    Welcome Back 🎟️
+  </h2>
+
+  <form id="loginForm">
+    <input type="email" placeholder="Email"
+      class="w-full mb-4 px-4 py-2 rounded bg-gray-700 focus:outline-none" required>
+
+    <input type="password" placeholder="Password"
+      class="w-full mb-6 px-4 py-2 rounded bg-gray-700 focus:outline-none" required>
+
+    <p id="loginError" class="hidden mb-4 text-sm text-red-400"></p>
+
+    <button type="submit"
+      class="w-full bg-red-500 py-2 rounded hover:bg-red-600">
+      Login
+    </button>
+  </form>
+
+  <p class="text-sm text-center text-gray-400 mt-4">
+    Don’t have an account?
+    <a href="register.html" class="text-red-400 hover:underline">
+      Register here
+    </a>
+  </p>
+
+  <p class="text-xs text-center text-gray-500 mt-3">
+    <a href="home.html" class="hover:underline">← Back to Home</a>
+  </p>
+
+</div>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const apiBase = window.location.protocol === 'file:' ? 'http://localhost:4000/api' : '/api';
+
+  loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    loginError.classList.add('hidden');
+
+    const fields = new FormData(loginForm);
+    const email = loginForm.querySelector('input[type="email"]').value;
+    const password = loginForm.querySelector('input[type="password"]').value;
+
+    try {
+      const response = await fetch(`${apiBase}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error?.message || 'Login failed');
+
+      localStorage.setItem('bookMyShowToken', result.data.token);
+      localStorage.setItem('bookMyShowUser', JSON.stringify(result.data.user));
+      const returnTo = new URLSearchParams(window.location.search).get('returnTo');
+      const destination = returnTo && returnTo.endsWith('.html') ? returnTo : (result.data.user.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html');
+      window.location.href = destination;
+    } catch (error) {
+      loginError.textContent = error.message.includes('Failed to fetch')
+        ? 'Cannot connect to the API. Start the backend with npm.cmd start.'
+        : error.message;
+      loginError.classList.remove('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>

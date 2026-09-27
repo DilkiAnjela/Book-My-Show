@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<nav class="px-10 py-4 bg-black/90 flex justify-between">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <a href="movies.html" class="hover:text-red-400">← Back</a>
+</nav>
+
+<section class="p-10 max-w-3xl mx-auto">
+  <h2 class="text-3xl font-bold mb-6">Select Showtime</h2>
+
+  <div class="space-y-4">
+    <div class="bg-gray-800 p-4 rounded flex justify-between">
+      <span>05 Feb 2026 • 7:30 PM • Screen 1</span>
+      <a href="seats.html"
+        class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+        Select
+      </a>
+    </div>
+
+    <div class="bg-gray-800 p-4 rounded flex justify-between">
+      <span>06 Feb 2026 • 9:00 PM • Screen 2</span>
+      <a href="seats.html"
+        class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+        Select
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  if (!localStorage.getItem('bookMyShowToken')) {
+    window.location.href = 'login.html?returnTo=shows.html';
+  }
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

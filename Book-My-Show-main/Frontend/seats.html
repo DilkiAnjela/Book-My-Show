@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Seats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom realistic cinema seat structure */
+    .seat-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .seat-wrapper:not(:disabled):hover {
+      transform: translateY(-3px);
+    }
+
+    /* Backrest */
+    .seat-back {
+      width: 100%;
+      height: 22px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-center: center;
+      font-size: 10px;
+      font-weight: 700;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Cushion Bottom */
+    .seat-cushion {
+      width: 110%;
+      height: 10px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      margin-top: 2px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Armrests */
+    .seat-arm-left, .seat-arm-right {
+      position: absolute;
+      top: 6px;
+      width: 3px;
+      height: 18px;
+      border-radius: 2px;
+    }
+    .seat-arm-left { left: -4px; }
+    .seat-arm-right { right: -4px; }
+
+    /* State: Available */
+    .seat-wrapper.available .seat-back {
+      background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+      border: 1px solid #4b5563;
+      color: #9ca3af;
+    }
+    .seat-wrapper.available .seat-cushion,
+    .seat-wrapper.available .seat-arm-left,
+    .seat-wrapper.available .seat-arm-right {
+      background: #374151;
+      border: 1px solid #4b5563;
+    }
+    .seat-wrapper.available:hover .seat-back {
+      border-color: #f87171;
+      color: #fca5a5;
+    }
+    .seat-wrapper.available:hover .seat-cushion {
+      background: #ef4444;
+      border-color: #f87171;
+    }
+
+    /* State: Selected */
+    .seat-wrapper.selected .seat-back {
+      background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+      border: 1px solid #f87171;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+    }
+    .seat-wrapper.selected .seat-cushion,
+    .seat-wrapper.selected .seat-arm-left,
+    .seat-wrapper.selected .seat-arm-right {
+      background: #b91c1c;
+      border: 1px solid #f87171;
+    }
+
+    /* State: Booked */
+    .seat-wrapper.booked {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+    .seat-wrapper.booked .seat-back {
+      background: #111827;
+      border: 1px solid #1f2937;
+      color: #4b5563;
+    }
+    .seat-wrapper.booked .seat-cushion,
+    .seat-wrapper.booked .seat-arm-left,
+    .seat-wrapper.booked .seat-arm-right {
+      background: #1f2937;
+      border: 1px solid #111827;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Navigation Bar -->
+  <nav class="px-6 sm:px-10 py-4 bg-black/90 flex justify-between items-center border-b border-gray-800">
+    <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+    <a href="shows.html" class="hover:text-red-400 font-medium transition-colors">← Back</a>
+  </nav>
+
+  <!-- Main Seat Selection Section -->
+  <section class="p-4 sm:p-8 max-w-4xl mx-auto w-full my-auto">
+    <div class="bg-gray-800/90 p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-700/80 backdrop-blur-sm">
+      
+      <!-- Title & Screen Indicator -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-wide text-red-500">SELECT YOUR SEATS</h2>
+        <p class="text-gray-400 text-sm mt-1">Screen 01 • Audi 3D</p>
+      </div>
+
+      <!-- Screen Direction Bar -->
+      <div class="flex flex-col items-center mb-10">
+        <div class="w-3/4 sm:w-2/3 h-8 border-b-4 border-red-500 rounded-[50%] shadow-[0_12px_20px_-4px_rgba(239,68,68,0.3)]"></div>
+        <p class="text-xs uppercase tracking-widest text-gray-400 mt-3 font-semibold">Screen This Way</p>
+      </div>
+
+      <!-- Seat Legend -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-10 text-xs sm:text-sm bg-gray-900/60 p-4 rounded-xl border border-gray-700/50">
+        <div class="flex items-center gap-2">
+          <div class="seat-wrapper available w-6">
+            <div class="seat-back text-[8px]"></div>
+            <div class="seat-cushion"></div>
+          </div>
+          <span class="text-gray-300 ml-1">Available</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="seat-wrapper selected w-6">
+            <div class="seat-back text-[8px]"></div>
+            <div class="seat-cushion"></div>
+          </div>
+          <span class="text-gray-300 ml-1">Selected</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="seat-wrapper booked w-6">
+            <div class="seat-back text-[8px]"></div>
+            <div class="seat-cushion"></div>
+          </div>
+          <span class="text-gray-400 ml-1">Booked</span>
+        </div>
+        <div class="h-4 w-px bg-gray-700 hidden sm:block"></div>
+        <div class="flex items-center gap-2 text-xs text-red-400 font-medium">
+          <span>VIP: LKR 1,500</span> • <span>Standard: LKR 1,000</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Seat Grid -->
+      <div id="seat-map" class="flex flex-col items-center gap-4 overflow-x-auto pb-4">
+        <!-- Seats dynamically generated via JavaScript -->
+      </div>
+
+      <!-- Booking Summary & Navigation Footer -->
+      <div class="mt-8 pt-6 border-t border-gray-700/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left">
+          <p class="text-xs text-gray-400 uppercase tracking-wider">Selected Seats</p>
+          <p id="selected-seats-display" class="text-sm font-semibold text-red-400 min-h-[1.25rem]">None</p>
+        </div>
+        
+        <div class="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+          <div class="text-left sm:text-right">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Total Amount</p>
+            <p class="text-xl font-bold text-white">LKR <span id="total-price">0</span></p>
+          </div>
+
+          <a id="continue-link" href="booking-summary.html" class="pointer-events-none opacity-50 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all transform active:scale-95 text-center">
+            Continue
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Row & Seat Configuration
+    const rows = [
+      { row: 'A', type: 'VIP', price: 1500, seats: 8 },
+      { row: 'B', type: 'VIP', price: 1500, seats: 8 },
+      { row: 'C', type: 'Standard', price: 1000, seats: 10 },
+      { row: 'D', type: 'Standard', price: 1000, seats: 10 },
+      { row: 'E', type: 'Standard', price: 1000, seats: 10 },
+      { row: 'F', type: 'Standard', price: 1000, seats: 10 }
+    ];
+
+    // Array of currently booked seats
+    const bookedSeats = ['A3', 'A4', 'C5', 'D1', 'D2', 'F10'];
+
+    const selectedSeats = new Set();
+    const seatMap = document.getElementById('seat-map');
+    const selectedDisplay = document.getElementById('selected-seats-display');
+    const totalPriceDisplay = document.getElementById('total-price');
+    const continueBtn = document.getElementById('continue-link');
+
+    // Build the Grid
+    rows.forEach(rowData => {
+      const rowContainer = document.createElement('div');
+      rowContainer.className = 'flex items-center gap-2 sm:gap-3';
+
+      // Left Row Indicator
+      const labelLeft = document.createElement('span');
+      labelLeft.className = 'w-5 text-xs font-bold text-gray-500 text-center';
+      labelLeft.innerText = rowData.row;
+      rowContainer.appendChild(labelLeft);
+
+      // Seats Container
+      const seatsWrapper = document.createElement('div');
+      seatsWrapper.className = 'flex items-center gap-2 sm:gap-2.5';
+
+      for (let i = 1; i <= rowData.seats; i++) {
+        const seatId = `${rowData.row}${i}`;
+        const isBooked = bookedSeats.includes(seatId);
+
+        // Add Center Aisle Gap
+        if (i === Math.floor(rowData.seats / 2) + 1) {
+          const gap = document.createElement('div');
+          gap.className = 'w-4 sm:w-8';
+          seatsWrapper.appendChild(gap);
+        }
+
+        // Individual Seat Element constructed as a realistic cinema chair
+        const seatBtn = document.createElement('button');
+        seatBtn.dataset.seatId = seatId;
+        seatBtn.dataset.price = rowData.price;
+        seatBtn.className = `seat-wrapper w-7 sm:w-8 ${isBooked ? 'booked' : 'available'}`;
+
+        seatBtn.innerHTML = `
+          <div class="seat-arm-left"></div>
+          <div class="seat-back">${i}</div>
+          <div class="seat-cushion"></div>
+          <div class="seat-arm-right"></div>
+        `;
+
+        if (isBooked) {
+          seatBtn.disabled = true;
+        } else {
+          seatBtn.addEventListener('click', () => toggleSeat(seatBtn, seatId));
+        }
+
+        seatsWrapper.appendChild(seatBtn);
+      }
+
+      rowContainer.appendChild(seatsWrapper);
+
+      // Right Row Indicator
+      const labelRight = document.createElement('span');
+      labelRight.className = 'w-5 text-xs font-bold text-gray-500 text-center';
+      labelRight.innerText = rowData.row;
+      rowContainer.appendChild(labelRight);
+
+      seatMap.appendChild(rowContainer);
+    });
+
+    // Seat Selection Toggle Handler
+    function toggleSeat(element, seatId) {
+      if (selectedSeats.has(seatId)) {
+        selectedSeats.delete(seatId);
+        element.classList.remove('selected');
+        element.classList.add('available');
+      } else {
+        selectedSeats.add(seatId);
+        element.classList.remove('available');
+        element.classList.add('selected');
+      }
+
+      updateSummary();
+    }
+
+    // Dynamic Summary and Button State Update
+    function updateSummary() {
+      const selectedArray = Array.from(selectedSeats).sort();
+      let total = 0;
+
+      selectedArray.forEach(id => {
+        const seatElem = document.querySelector(`[data-seat-id="${id}"]`);
+        total += parseInt(seatElem.dataset.price);
+      });
+
+      selectedDisplay.innerText = selectedArray.length > 0 ? selectedArray.join(', ') : 'None';
+      totalPriceDisplay.innerText = total.toLocaleString();
+
+      if (selectedArray.length > 0) {
+        continueBtn.classList.remove('pointer-events-none', 'opacity-50');
+      } else {
+        continueBtn.classList.add('pointer-events-none', 'opacity-50');
+      }
+    }
+  </script>
+<script src="auth.js"></script>
+</body>
+</html>

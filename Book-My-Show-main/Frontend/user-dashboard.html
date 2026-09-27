@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard | Book My Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-4 bg-black/90">
+  <h1 class="text-2xl font-bold text-red-500">🎬 Book My Show</h1>
+  <div class="space-x-6">
+    <a href="home.html" class="hover:text-red-400">Home</a>
+    <a href="movies.html" class="hover:text-red-400">Movies</a>
+    <a href="my-bookings.html" class="hover:text-red-400">My Bookings</a>
+    <a href="login.html" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+      Logout
+    </a>
+  </div>
+</nav>
+
+<!-- DASHBOARD -->
+<section class="p-10 max-w-5xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8">Welcome, User 👋</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Total Bookings</p>
+      <p class="text-3xl font-bold">5</p>
+    </div>
+
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Upcoming Movies</p>
+      <p class="text-3xl font-bold text-green-400">2</p>
+    </div>
+
+    <div class="bg-gray-800 p-6 rounded">
+      <p class="text-gray-400">Cancelled Bookings</p>
+      <p class="text-3xl font-bold text-red-400">1</p>
+    </div>
+
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="mt-10 bg-gray-800 p-6 rounded">
+    <h3 class="text-xl font-semibold mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-4">
+      <a href="movies.html"
+         class="bg-red-500 px-5 py-2 rounded hover:bg-red-600">
+        Book New Ticket
+      </a>
+      <a href="my-bookings.html"
+         class="bg-gray-700 px-5 py-2 rounded hover:bg-gray-600">
+        View My Bookings
+      </a>
+    </div>
+  </div>
+</section>
+
+<script src="auth.js"></script>
+</body>
+</html>

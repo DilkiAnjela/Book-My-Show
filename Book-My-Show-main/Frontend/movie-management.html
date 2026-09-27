@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white flex">
+
+<!-- SIDEBAR -->
+<aside class="w-64 bg-black min-h-screen p-6">
+  <h1 class="text-2xl font-bold text-red-500 mb-8">🎬 Admin Panel</h1>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html" class="block hover:text-red-400">Dashboard</a>
+    <a href="movie-management.html" class="block text-red-400">Movies</a>
+    <a href="theater-screen-management.html" class="block hover:text-red-400">Theaters & Screens</a>
+    <a href="show-management.html" class="block hover:text-red-400">Shows</a>
+    <a href="seat-management.html" class="block hover:text-red-400">Seats</a>
+  </nav>
+</aside>
+
+<!-- CONTENT -->
+<main class="flex-1 p-10">
+  <h2 class="text-3xl font-bold mb-6">Movie Management</h2>
+
+  <!-- ADD MOVIE BUTTON -->
+  <button onclick="openModal()"
+          class="mb-4 bg-green-500 px-4 py-2 rounded hover:bg-green-600">
+    + Add Movie
+  </button>
+
+  <!-- MOVIE TABLE -->
+  <table class="w-full bg-gray-800 rounded overflow-hidden">
+    <thead class="bg-gray-700">
+      <tr>
+        <th class="p-3 text-left">Title</th>
+        <th>Genre</th>
+        <th>Duration</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="border-t border-gray-700">
+        <td class="p-3">Interstellar</td>
+        <td>Sci-Fi</td>
+        <td>2h 49m</td>
+        <td class="text-green-400">Active</td>
+        <td>
+          <button class="text-blue-400 mr-2">Edit</button>
+          <button class="text-red-400">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<!-- ADD MOVIE MODAL -->
+<div id="movieModal"
+     class="fixed inset-0 bg-black bg-opacity-60 hidden flex items-center justify-center">
+
+  <div class="bg-gray-800 p-6 rounded w-96">
+    <h3 class="text-xl font-bold mb-4">Add New Movie</h3>
+
+    <form class="space-y-4">
+
+      <input type="text" placeholder="Movie Title"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <input type="text" placeholder="Genre"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <input type="text" placeholder="Duration (e.g. 2h 30m)"
+             class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+
+      <select class="w-full p-2 rounded bg-gray-700 focus:outline-none">
+        <option>Active</option>
+        <option>Inactive</option>
+      </select>
+
+      <div class="flex justify-end gap-3 mt-4">
+        <button type="button" onclick="closeModal()"
+                class="px-4 py-2 bg-gray-600 rounded hover:bg-gray-500">
+          Cancel
+        </button>
+        <button type="button"
+                class="px-4 py-2 bg-green-500 rounded hover:bg-green-600">
+          Save Movie
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function openModal() {
+    document.getElementById("movieModal").classList.remove("hidden");
+  }
+
+  function closeModal() {
+    document.getElementById("movieModal").classList.add("hidden");
+  }
+</script>
+
+</body>
+</html>

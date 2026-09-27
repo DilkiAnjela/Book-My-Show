@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | Book My Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-black to-gray-900 h-screen flex items-center justify-center">
+
+<div class="bg-gray-800 p-8 rounded-xl w-96 text-white shadow-xl">
+
+  <h2 class="text-3xl font-bold text-center mb-6">
+    Create Account 🎬
+  </h2>
+
+  <form id="registerForm">
+    <input type="text" placeholder="Full Name"
+      class="w-full mb-4 px-4 py-2 rounded bg-gray-700 focus:outline-none" required>
+
+    <input type="email" placeholder="Email"
+      class="w-full mb-4 px-4 py-2 rounded bg-gray-700 focus:outline-none" required>
+
+    <input type="password" placeholder="Password"
+      class="w-full mb-6 px-4 py-2 rounded bg-gray-700 focus:outline-none" minlength="6" required>
+
+    <p id="registerError" class="hidden mb-4 text-sm text-red-400"></p>
+
+    <button type="submit"
+      class="w-full bg-green-500 py-2 rounded hover:bg-green-600">
+      Register
+    </button>
+  </form>
+
+  <p class="text-sm text-center text-gray-400 mt-4">
+    Already have an account?
+    <a href="login.html" class="text-red-400 hover:underline">
+      Login
+    </a>
+  </p>
+
+  <p class="text-xs text-center text-gray-500 mt-3">
+    <a href="home.html" class="hover:underline">← Back to Home</a>
+  </p>
+
+</div>
+
+<script>
+  const registerForm = document.getElementById('registerForm');
+  const registerError = document.getElementById('registerError');
+  const apiBase = window.location.protocol === 'file:' ? 'http://localhost:4000/api' : '/api';
+
+  registerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    registerError.classList.add('hidden');
+    const inputs = registerForm.querySelectorAll('input');
+
+    try {
+      const response = await fetch(`${apiBase}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: inputs[0].value, email: inputs[1].value, password: inputs[2].value })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error?.message || 'Registration failed');
+      window.location.href = 'login.html';
+    } catch (error) {
+      registerError.textContent = error.message.includes('Failed to fetch')
+        ? 'Cannot connect to the API. Start the backend with npm.cmd start.'
+        : error.message;
+      registerError.classList.remove('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seat Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex">
+
+<aside class="w-64 bg-black min-h-screen p-6">
+  <h1 class="text-2xl font-bold text-red-500 mb-8">🎬 Admin Panel</h1>
+  <nav class="space-y-4">
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="movie-management.html">Movies</a>
+    <a href="theater-screen-management.html">Theaters & Screens</a>
+    <a href="show-management.html">Shows</a>
+    <a href="seat-management.html" class="text-red-400">Seats</a>
+  </nav>
+</aside>
+
+<main class="flex-1 p-10">
+  <h2 class="text-3xl font-bold mb-6">Seat Management</h2>
+
+  <div class="bg-gray-800 p-6 rounded max-w-lg">
+    <h3 class="text-xl font-semibold mb-4">Screen 1</h3>
+
+    <div class="grid grid-cols-6 gap-3 mb-6">
+      <button class="seat">A1</button>
+      <button class="seat">A2</button>
+      <button class="seat bg-red-500">A3</button>
+      <button class="seat">A4</button>
+      <button class="seat">A5</button>
+      <button class="seat">A6</button>
+    </div>
+
+    <button class="w-full bg-green-500 py-2 rounded">
+      Save Layout
+    </button>
+  </div>
+</main>
+
+<style>
+  .seat {
+    @apply bg-gray-600 py-2 rounded hover:bg-green-500;
+  }
+</style>
+
+</body>
+</html>
